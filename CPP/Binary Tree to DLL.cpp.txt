@@ -1,0 +1,26 @@
+Node * bToDLL(Node *root)
+    {
+        // your code here
+        if(root == NULL)return root;
+        
+        Node *head = bToDLL(root->left);
+        if(head == NULL){
+            head = root;
+            root->left = NULL;
+        }else{
+            Node *temp = head;
+            while(temp->right != NULL)temp = temp->right;
+            temp->right = root;
+            root->left = temp;
+        }
+        Node* head1 = bToDLL(root->right);
+        if(head1 == NULL){
+            root->right = NULL;
+        }else{
+            head1->left = root;
+            root->right = head1;
+        }
+        
+        return head;
+    }
+};
